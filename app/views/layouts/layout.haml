@@ -1,0 +1,22 @@
+
+!!! 5
+%html{:lang => "en"}
+  %head
+    %title Fishnet
+    %meta(content="IE=edge,chrome=1" http-equiv="X-UA-Compatible")
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
+    %meta(name="description" content="Grid system based on the semantic.gs")
+    %meta(name="author" content="Matthew Kitt")
+    %meta(name="imagetoolbar" content="no")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %meta(name="apple-touch-fullscreen" content="YES")
+    %meta(name="apple-mobile-web-app-capable" content="YES")
+    %meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    %link(rel="apple-touch-startup-image" href="startup.png")
+
+    %link(href="/assets/application.css" rel="stylesheet" type="text/css")
+
+  %body(role="document")
+    .container(role="main" aria-live="polite" aria-atomic="true")
+      = yield
+
