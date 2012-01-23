@@ -32,21 +32,29 @@ $indigo: #4b0082
 $violet: #ee82ee
 
 
-// Defaults which you can freely override
-$column-width: 74
-$gutter-width: 8
+$column-width: 74px
+$gutter-width: 8px
 $columns: 12
-// Set $total-width to 100% for a fluid layout
-// $total-width: gridsystem-width($columns)
 $total-width: 100%
-
-// fluid sizing
-$base_px: 16
-$base_wv: 984
-$col_width: 74px
 
 @import general/normalize
 @import general/base
-@import grids
+@import general/fishnet
+// +grid-settings(100%, 12, 74px, 8px)
 @import general/layout
 
+
+// Debugging with mesh styles
+@import fishnet/mesh-guide
++add-guide-column-classes()
++add-guide-column-pull-classes()
++add-guide-column-push-classes()
++add-guide-column-full-classes()
++add-guide-column-offset-left-classes()
++add-guide-column-offset-left-pull-classes()
++add-guide-column-offset-left-push-classes()
++add-guide-column-offset-left-full-classes()
++add-guide-column-offset-right-classes()
++add-guide-column-offset-right-pull-classes()
++add-guide-column-offset-right-push-classes()
++add-guide-column-offset-right-full-classes()

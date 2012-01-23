@@ -1,0 +1,98 @@
+
+// Calculations based on the [semantic grid system](http://semantic.gs/)
+
+// ### Typical Columns
+
+@mixin column($x, $columns:$columns)
+  @extend .base-column
+  margin-left: gutter_space($columns)
+  margin-right: gutter_space($columns)
+  width: column_width($x, $columns)
+
+@mixin column-pull($x, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: 0
+  margin-right: gutter_space($columns)
+  @if $resize == true
+    width: column_pull_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-push($x, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: gutter_space($columns)
+  margin-right: 0
+  @if $resize == true
+    width: column_push_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-full($x, $columns:$columns)
+  @extend .base-column
+  margin-left: 0
+  margin-right: 0
+  width: column_full_width($x, $columns)
+
+
+// ### Offset Columns
+
+@mixin column-offset-left($x, $offset:0, $columns:$columns)
+  @extend .base-column
+  margin-left: offset_width($offset)
+  margin-right: gutter_space($columns)
+  width: column_width($x, $columns)
+
+@mixin column-offset-left-pull($x, $offset:0, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: offset_width($offset) - gutter_space($columns)
+  margin-right: gutter_space($columns)
+  @if $resize == true
+    width: column_pull_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-offset-left-push($x, $offset:0, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: offset_width($offset)
+  margin-right: 0
+  @if $resize == true
+    width: column_push_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-offset-left-full($x, $offset:0, $columns:$columns)
+  @extend .base-column
+  margin-left: offset_width($offset) - gutter_space($columns)
+  margin-right: 0
+  width: column_full_width($x, $columns)
+
+@mixin column-offset-right($x, $offset:0, $columns:$columns)
+  @extend .base-column
+  margin-left: gutter_space($columns)
+  margin-right: offset_width($offset)
+  width: column_width($x, $columns)
+
+@mixin column-offset-right-pull($x, $offset:0, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: 0
+  margin-right: offset_width($offset) - gutter_space($columns)
+  @if $resize == true
+    width: column_pull_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-offset-right-push($x, $offset:0, $columns:$columns, $resize:true)
+  @extend .base-column
+  margin-left: gutter_space($columns)
+  margin-right: offset_width($offset) - gutter_space($columns)
+  @if $resize == true
+    width: column_push_width($x, $columns)
+  @else
+    width: column_width($x, $columns)
+
+@mixin column-offset-right-full($x, $offset:0, $columns:$columns)
+  @extend .base-column
+  margin-left: 0
+  margin-right: offset_width($offset) - gutter_space($columns)
+  width: column_full_width($x, $columns)
+

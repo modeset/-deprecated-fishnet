@@ -1,0 +1,40 @@
+
+$fn-box-size: border-box !default
+
+// Helper mixins for common settings in a grid.
+// All are prefixed with `fn` to avoid namespace collisions with other libraries
+
+// Defaults to setting the box model to `border-box` for easier calculations
+@mixin fn-box-sizing($bs:$fn-box-size)
+  $bs: unquote($bs)
+  -moz-box-sizing: $bs
+  -webkit-box-sizing: $bs
+  -ms-box-sizing:  $bs
+  box-sizing:  $bs
+
+// The micro [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/)
+@mixin fn-clearfix
+  zoom: 1
+  &:before,
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+
+
+// Abstract classes used by `@extend`.
+
+
+// The base `column` settings, extended by all columns
+.base-column
+  +fn-box-sizing($fn-box-size)
+  display: inline
+  float: left
+
+// The base `row` settings, extended by all rows
+.base-row
+  +fn-box-sizing($fn-box-size)
+  +fn-clearfix
+  display: block
+

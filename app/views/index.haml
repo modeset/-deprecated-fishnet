@@ -10,69 +10,69 @@
 
 %h2 Standard Columns <code>+column(n)</code>
 - (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='col-#{i}'></div>"}
+  ! #{"<div class='fn-col-#{i}'></div>"}
   - if num_columns - i > 0
-    ! #{"<div class='col-#{num_columns - i}'></div>"}
+    ! #{"<div class='fn-col-#{num_columns - i}'></div>"}
 .clearfixer
 
 - (1..num_columns).each do |i|
-  .col-1
+  .fn-col-1
 .clearfixer
 
 %h2 Push / Pull Horizontal Columns <code>+column-push(n) / +column-pull(n)</code>
 - (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='col-pull-#{i}'></div>"}
+  ! #{"<div class='fn-col-pull-#{i}'></div>"}
   - if num_columns - i > 0
-    ! #{"<div class='col-push-#{num_columns - i} alt'></div>"}
+    ! #{"<div class='fn-col-push-#{num_columns - i} alt'></div>"}
   - else
-    ! #{"<div class='col-push-#{num_columns} alt'></div>"}
+    ! #{"<div class='fn-col-push-#{num_columns} alt'></div>"}
 .clearfixer
 
 %h2 Full Horizontal Columns (pushed and pulled) <code>+column-full(n)</code>
 - (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='col-full-#{i}'></div>"}
+  ! #{"<div class='fn-col-full-#{i}'></div>"}
   - if num_columns - i > 0
-    ! #{"<div class='col-full-#{num_columns - i} alt'></div>"}
+    ! #{"<div class='fn-col-full-#{num_columns - i} alt'></div>"}
 .clearfixer
 
 %h2 Offset Column Left <code>+column-offset-left(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-left-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-left-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Left Pull <code>+column-offset-left-pull(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-left-pull-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-left-pull-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Left Push <code>+column-offset-left-push(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-left-push-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-left-push-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Left Full <code>+column-offset-left-full(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-left-full-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-left-full-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Right <code>+column-offset-right(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-right-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-right-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Right Pull <code>+column-offset-right-pull(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-right-pull-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-right-pull-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Right Push <code>+column-offset-right-push(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-right-push-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-right-push-#{i}'></div>"}
 .clearfixer
 
 %h2 Offset Column Right Full <code>+column-offset-right-full(n, by)</code>
 - (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='col-offset-right-full-#{i}'></div>"}
+  ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
 .clearfixer
 
 

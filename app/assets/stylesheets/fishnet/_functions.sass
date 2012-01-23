@@ -1,0 +1,42 @@
+
+// Calculations based on the [semantic grid system](http://semantic.gs/)
+
+// Utility function for measuring the width of the `standard` grid
+@function gridsystem_width($columns:$columns)
+  @return ($column-width * $columns) + ($gutter-width * $columns)
+
+// Utility function for measuring the width of the grid when using `push/pull` columns
+@function gridsystem_half_width($columns:$columns)
+  @return ($column-width * $columns) + (($gutter-width * .5) * $columns)
+
+// Utility function for measuring the width of the grid when using `full` columns
+@function gridsystem_full_width($columns:$columns)
+  @return ($column-width * $columns)
+
+
+// Returns the width of the column within a `standard` grid
+@function column_width($x, $columns:$columns)
+  @return $total-width * (((($gutter-width + $column-width) * $x) - $gutter-width) / gridsystem_width($columns))
+
+// Returns the width of the column within a `pull` grid
+@function column_pull_width($x, $columns:$columns)
+  $_half: $gutter-width * .5
+  @return $total-width * (((($_half + $column-width) * $x) - $_half) / gridsystem_half_width($columns))
+
+// Returns the width of the column within a `push` grid
+@function column_push_width($x, $columns:$columns)
+  @return column_pull_width($x, $columns)
+
+// Returns the width of the column within a `full` grid
+@function column_full_width($x, $columns: $columns)
+  @return $total-width * (((($column-width) * $x)) / gridsystem_full_width($columns))
+
+// Returns the width of the `offset` used in the grid
+// TODO: Calculations could be cleaned up a bit so they make more sense
+@function offset_width($offset)
+  @return $total-width * ((($gutter-width + $column-width) * $offset) / gridsystem_width($columns)) + $total-width * (($gutter-width * .5) / gridsystem_width($columns))
+
+// Returns the width of spacing between columns
+@function gutter_space($columns)
+  @return $total-width * (($gutter-width * .5) / gridsystem_width($columns))
+

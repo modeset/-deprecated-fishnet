@@ -1,0 +1,72 @@
+
+// Convenience mixins for generating various non-semantic `column` classes. Generally used in quick prototypes.
+
+// _Use these sparingly, as they can quickly create a lot of classes in your compiled CSS_
+// _For instance if only using typical `column` classes (`standard`, `push`, `pull`, `full`) with 12 columns, would equate to 48 classes_
+
+
+// ### Typical Columns
+
+@mixin add-column-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-#{$i}
+      +column($i, $columns)
+
+@mixin add-column-pull-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-pull-#{$i}
+      +column-pull($i, $columns, $resize)
+
+@mixin add-column-push-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-push-#{$i}
+      +column-push($i, $columns, $resize)
+
+@mixin add-column-full-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-full-#{$i}
+      +column-full($i, $columns)
+
+
+// ### Offset Columns
+
+@mixin add-column-offset-left-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-offset-left-#{$i}
+      +column-offset-left($i, $columns - $i, $columns)
+
+@mixin add-column-offset-left-pull-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-offset-left-pull-#{$i}
+      +column-offset-left-pull($i, $columns - $i, $columns, $resize)
+
+@mixin add-column-offset-left-push-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-offset-left-push-#{$i}
+      +column-offset-left-push($i, $columns - $i, $columns, $resize)
+
+@mixin add-column-offset-left-full-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-offset-left-full-#{$i}
+      +column-offset-left-full($i, $columns - $i, $columns)
+
+@mixin add-column-offset-right-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-offset-right-#{$i}
+      +column-offset-right($i, $columns - $i, $columns)
+
+@mixin add-column-offset-right-pull-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-offset-right-pull-#{$i}
+      +column-offset-right-pull($i, $columns - $i, $columns, $resize)
+
+@mixin add-column-offset-right-push-classes($columns:$columns, $resize:true)
+  @for $i from 1 through $columns
+    .col-offset-right-push-#{$i}
+      +column-offset-right-push($i, $columns - $i, $columns, $resize)
+
+@mixin add-column-offset-right-full-classes($columns:$columns)
+  @for $i from 1 through $columns
+    .col-offset-right-full-#{$i}
+      +column-offset-right-full($i, $columns - $i, $columns)
+
