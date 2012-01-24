@@ -23,7 +23,7 @@ $fn-box-size: border-box !default
     clear: both
 
 
-// Abstract classes used by `@extend`.
+// Abstract classes used by `@extend`
 
 
 // The base `column` settings, extended by all columns
@@ -31,6 +31,12 @@ $fn-box-size: border-box !default
   +fn-box-sizing($fn-box-size)
   display: inline
   float: left
+
+// An alternate base `column` which floats elements to the right
+.base-column-right
+  +fn-box-sizing($fn-box-size)
+  display: inline
+  float: right
 
 // The base `row` settings, extended by all rows
 .base-row
