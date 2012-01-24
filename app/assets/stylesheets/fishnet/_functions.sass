@@ -1,6 +1,23 @@
 
 // Calculations based on the [semantic grid system](http://semantic.gs/)
 
+// Defaults which you can freely override
+$column-width: 60px !default
+$gutter-width: 20px !default
+$columns: 12 !default
+$total-width: 100% !default
+
+// Wrapper around defining the defaults (useful for recalculating a grid for media queries)
+// If using a fixed grid, pass `fixed` for `$page-width`
+@mixin grid-settings($page-width:100%, $cols:$columns, $col-width:$column-width, $gut-width:$gutter-width)
+  $columns: $cols
+  $column-width: $col-width
+  $gutter-width: $gut-width
+  @if $page-width == 100%
+    $total-width: 100%
+  @else
+    $total-width: gridsystem_width($columns)
+
 // Utility function for measuring the width of the `standard` grid
 @function gridsystem_width($columns:$columns)
   @return ($column-width * $columns) + ($gutter-width * $columns)
@@ -28,15 +45,15 @@
   @return column_pull_width($x, $columns)
 
 // Returns the width of the column within a `full` grid
-@function column_full_width($x, $columns: $columns)
+@function column_full_width($x, $columns:$columns)
   @return $total-width * (((($column-width) * $x)) / gridsystem_full_width($columns))
 
 // Returns the width of the `offset` used in the grid
-// TODO: Calculations could be cleaned up a bit so they make more sense
-@function offset_width($offset)
-  @return $total-width * ((($gutter-width + $column-width) * $offset) / gridsystem_width($columns)) + $total-width * (($gutter-width * .5) / gridsystem_width($columns))
+@function offset_width($offset:0)
+  $_half: $gutter-width * .5
+  @return $total-width * ((($gutter-width + $column-width) * $offset) / gridsystem_width($columns)) + $total-width * ($_half / gridsystem_width($columns))
 
 // Returns the width of spacing between columns
-@function gutter_space($columns)
+@function gutter_space($columns:$columns)
   @return $total-width * (($gutter-width * .5) / gridsystem_width($columns))
 
