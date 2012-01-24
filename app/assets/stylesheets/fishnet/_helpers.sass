@@ -22,6 +22,17 @@ $fn-box-size: border-box !default
   &:after
     clear: both
 
+// Wrapper around defining the defaults (useful for recalculating a grid for media queries)
+// If using a fixed grid, pass `fixed` or some other random value for `$page-width`
+@mixin grid-settings($page-width:100%, $cols:$columns, $col-width:$column-width, $gut-width:$gutter-width)
+  $columns: $cols
+  $column-width: $col-width
+  $gutter-width: $gut-width
+  @if $page-width == 100%
+    $total-width: 100%
+  @else
+    $total-width: gridsystem_width($columns)
+
 
 // Abstract classes used by `@extend`
 

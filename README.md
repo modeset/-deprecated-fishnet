@@ -2,7 +2,6 @@ wip: nothing to see here
 
 <!-- TODO: -->
 
-<!-- Rename Repository to fishnet.gs -->
 <!-- Kill the fluidity project (grab the sizing settings first!!!!) -->
 <!-- Good clean showcase site -->
 <!-- Document nested -->

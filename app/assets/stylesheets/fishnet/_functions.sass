@@ -7,17 +7,6 @@ $gutter-width: 20px !default
 $columns: 12 !default
 $total-width: 100% !default
 
-// Wrapper around defining the defaults (useful for recalculating a grid for media queries)
-// If using a fixed grid, pass `fixed` for `$page-width`
-@mixin grid-settings($page-width:100%, $cols:$columns, $col-width:$column-width, $gut-width:$gutter-width)
-  $columns: $cols
-  $column-width: $col-width
-  $gutter-width: $gut-width
-  @if $page-width == 100%
-    $total-width: 100%
-  @else
-    $total-width: gridsystem_width($columns)
-
 // Utility function for measuring the width of the `standard` grid
 @function gridsystem_width($columns:$columns)
   @return ($column-width * $columns) + ($gutter-width * $columns)
