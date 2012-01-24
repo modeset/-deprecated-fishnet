@@ -2,7 +2,6 @@ wip: nothing to see here
 
 <!-- TODO: -->
 
-<!-- Kill the fluidity project (grab the sizing settings first!!!!) -->
 <!-- Good clean showcase site -->
 <!-- Document nested -->
 <!-- Document offsets positioning (2 offset / 6 cols / 1 offset / 3 cols) -->
