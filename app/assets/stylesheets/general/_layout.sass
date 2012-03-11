@@ -1,20 +1,52 @@
 
-// Alternate to the Compass clearfix
-// Use pseudo elements to clear floats instead of `overflow:hidden`
-@mixin clearfixer
-  zoom: 1
-  &:before,
-  &:after
-    content: ""
-    display: table
-  &:after
-    clear: both
-
 .container
-  // max-width: 984px
-  // margin: 0 auto
-  // margin: 0 5%
-  // width: 984px
-  // outline: 1px dotted green
   +clearfixer
+  max-width: $base_width * 1px
+  margin: 0 auto
+  padding: 0 1%
+  &.fluid, &.fixed
+    max-width: none
+  &.fixed
+    width: $base_width * 1px
+
+// Site Layout
+.section
+  +clearfixer
+  margin-top: 2em
+.sub-section
+  +clearfixer
+  margin-top: 1em
+
+.section-heading
+  border-bottom: 1px solid $greyC
+  line-height: 1.4
+  margin-bottom: 1em
+  & span
+    float: right
+    font-size: 0.5em
+    margin-top: 1.5em
+
+.section-subheading
+  margin-bottom: 0.5em
+  & span
+    font-size: 0.65em
+    margin-left: 0.5em
+  & + p
+    margin-bottom: 1em
+
+.page-info.fixed
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  z-index: 1010
+
+.page-info span
+  display: block
+  color: $greyC
+  font-weight: bold
+  float: right
+
+.page-info + .container
+  margin-top: 3em
 

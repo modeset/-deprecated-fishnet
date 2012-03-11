@@ -1,23 +1,60 @@
 
+// HTML 5 definitions and normalization
+article, aside, details, figcaption, figure,
+footer, header, hgroup, nav, section
+  display: block
+  margin: 0
+  padding: 0
+
+// Reset margins, paddings and borders
+html, body, div, span, hr, img,
+h1, h2, h3, h4, h5, h6, p, a, small, strong, em,
+address, abbr, dfn, sub, sup, del, ins,
+blockquote, q, cite, pre, code, kbd, samp,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, button, input, select, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td,
+summary, time, mark
+  margin: 0
+  padding: 0
+
+// Better box model
+*
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+img
+  border: 0
+  -ms-interpolation-mode: bicubic
+  max-width: 100%
+
+button[disabled],
+a.disabled,
+li.disabled > a
+  cursor: default
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  max-width: 100%
+
+// Top level elements
 html
   font-size: 100%
-  line-height: 1
   overflow-y: scroll
   -webkit-tap-highlight-color: rgba(0,0,0,0)
   -webkit-font-smoothing: antialiased
   -webkit-text-size-adjust: 100%
   -ms-text-size-adjust: 100%
 
-body
-  color: $grey6
+html, button, input, select, textarea
+  color: $grey3
   font-family: $sans_norm
-  background: $white
 
-hr
-  display: block
-  height: 1px
-  border: 0
-  border-top: 1px solid $grey6
+body
+  background: $white
+  +font-sizes($base_font_size)
+  line-height: $base_line_height
 
 \::-moz-selection
   background: $blue
@@ -41,49 +78,155 @@ a:hover, a:active
   outline: 0
   text-decoration: none
 
-a:hover, a:active
-  color: $grey4
+a:hover,
+a:active,
+a.active,
+.active > a
+  color: darken($blue, 20%)
+
 
 a:link
   -webkit-tap-highlight-color: $blue
 
+// ## Typography
 
-// Typography
-pre, code, kbd, samp
+// Heading Styles
+h1, h2, h3, h4, h5, h6
+  color: $grey3
+  line-height: 1
+  margin-bottom: 0.1em
+
+h1
+  +font-sizes(36)
+
+h2
+  +font-sizes(30)
+
+h3
+  +font-sizes(24)
+  margin-top: 2em
+
+h4
+  +font-sizes(20)
+
+h5
+  +font-sizes(18)
+
+h6
+  +font-sizes(18)
+  font-style: italic
+
+// Paragraph Styles
+p
+  font-style: normal
+p a:hover
+  text-decoration: underline
+
+small
+  font-size: 85%
+
+// Code
+pre, code
   font-family: $code_norm
   _font-family: "courier new", monospace
-  font-size: .85em
 
-code, kbd, samp
-  padding: 0 .2em
-  border: 1px solid #dedede
-  background: #f8f8ff
+code
+  background: $off_white
+  border: 1px solid lighten($greyC, 10%)
+  color: $red
+  font-size: 85%
+  padding: 0 0.3em
 
 pre
+  background: $off_white
+  border: 1px solid $greyC
+  margin: 1em 0
+  padding: 0.75em
+  font-size: 85%
+  text-shadow: 0 1px 0 $white
   white-space: pre
   white-space: pre-wrap
   word-wrap: break-word
-  margin: 1em 0
-  background-color: #eee
-  border: 1px solid #ddd
-  padding: 0.3125em
+  overflow: hidden
 
-// Base Text
-h1, h2, h3, h4, h5, h6
-  color: $grey4
-
-h1
-  border-bottom: 1px solid $grey4
-  margin-bottom: 10px
-h2
-  margin: 20px 0 10px
-
-p
-  font-style: normal
-
-// Elements
-img
-  max-width: 100%
+pre code
+  padding: 0
   border: 0
-  -ms-interpolation-mode: bicubic
+  background: transparent
+
+// .pln, .pun, .opn, .clo => color: body_color
+pre.prettyprint
+  .com
+    color: #93a1a1
+  .lit
+    color: #195f91
+  .fun
+    color: #cb4b15
+  .kwd, .tag
+    color: #258ad2
+  .str, .atv
+    color: #859900
+  .atn, .type, .dec, .var
+    color: #d33682
+
+// Misc
+hr
+  display: block
+  height: 1px
+  border: 0
+  border-top: 1px solid $grey6
+  margin: 1em 0
+  &.dotted
+    border-top-style: dotted
+  &.dashed
+    border-top-style: dashed
+
+
+// LISTS
+
+// Ordered and Unordered Lists
+ul
+  list-style: square inside
+
+ol
+  list-style: decimal inside
+
+ul li, ol li
+  margin-left: 0.25em
+
+ul ul li, ul ol li,
+ol ul li, ol ol li
+  margin-left: 1.5em
+
+// Navigation and unstyled Lists
+nav ul, nav ol, ul.unstyled, ol.unstyled
+  list-style: none
+  list-style-image: none
+  margin: 0
+  padding: 0
+  ul li, ol li, li
+    margin-left: 0
+    padding: 0
+
+// Base Navs, used by tabs, pills, breadcrumbs, pagination, and navigation lists
+.nav
+  +clearfixer
+  list-style: none
+
+.nav > li > a
+  display: block
+
+.nav.inline > li
+  float: left
+
+.nav.inline > li > a
+  padding-left: 0.5em
+  padding-right: 0.5em
+
+// Active states for navs get a default cursor
+.nav > .active > a,
+.nav > .active > a:hover
+  cursor: default
+.nav > .dropdown.active > a:hover
+  cursor: pointer
 

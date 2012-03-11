@@ -1,0 +1,36 @@
+
+// Fills a background color and darkens the border based off a percentage
+@mixin background-darken-border($color, $percentage:20%)
+  background-color: $color
+  border: 1px solid darken($color, $percentage)
+
+// Base notification used for @extends
+.base-notification
+  -webkit-border-radius: $radii
+  -moz-border-radius: $radii
+  border-radius: $radii
+  +background-darken-border($standard)
+  position: relative
+  padding: 0.75em
+  margin: 1em 0
+  a
+    text-decoration: underline
+
+// Main notification message
+.notification
+  @extend .base-notification
+  text-shadow: $text_drop_lite
+  &.info, &.notice
+    +background-darken-border(lighten($grey9, 20%))
+  &.important
+    +background-darken-border(lighten($blue, 40%))
+    color: $blue
+  &.success
+    +background-darken-border(lighten($green, 40%))
+    color: $green
+  &.warning
+    +background-darken-border(lighten($yellow, 30%))
+    color: darken($yellow, 15%)
+  &.danger
+    +background-darken-border(lighten($red, 40%))
+    color: $red

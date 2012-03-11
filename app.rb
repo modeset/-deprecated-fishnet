@@ -20,6 +20,11 @@ module App
       haml :index, :layout => :"/layouts/layout"
     end
 
+    get '/:name' do
+      @page = params[:name]
+      haml :"/#{@page}", :layout => :"/layouts/layout"
+    end
+
   end
 end
 

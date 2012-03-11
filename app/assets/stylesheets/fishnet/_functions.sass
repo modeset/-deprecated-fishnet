@@ -1,15 +1,6 @@
 
 // Calculations based on the [semantic grid system](http://semantic.gs/)
 
-// Defaults which you can freely override
-$column-width: 60px !default
-$gutter-width: 20px !default
-$columns: 12 !default
-$total-width: 100% !default
-
-$base_px: 16 !default
-$base_width: 960 !default
-
 // Utility function for measuring the width of the `standard` grid
 @function gridsystem_width($columns:$columns)
   @return ($column-width * $columns) + ($gutter-width * $columns)
@@ -48,15 +39,4 @@ $base_width: 960 !default
 // Returns the width of spacing between columns
 @function gutter_space($columns:$columns)
   @return $total-width * (($gutter-width * .5) / gridsystem_width($columns))
-
-
-// TODO: Move these and rename (same with the defaults)?
-
-// Converts target `px` value to `em` in context constraints
-@function to_em($target_px, $context: $base_px)
-  @return ($target_px / $context) * 1em
-
-// Converts target `px` value to `percentage` in context constraints
-@function to_percent($target_px, $context: $base_width)
-  @return percentage($target_px / $context)
 

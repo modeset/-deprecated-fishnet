@@ -1,85 +1,246 @@
 
-- num_columns = 12
+:ruby
+  @num_columns = 12
 
--# .grid-overlay
-  -# - (1..num_columns).each do |i|
-    -# .col-overlay
+%section.well.lite
+  %h1 Fishnet
 
-%h1 Fishnet.gs
+  %p A simple grid framework based on the <a href="http://semantic.gs/">semantic grid system</a>, built in <a href="http://sass-lang.com/">sass</a> and tuned to work with both fluid and fixed layouts.
+  %br
+  %p Fishnet follows the philosophy that your html markup should be as semantic as possible, while maintaining the flexibility and order of a grid system. With <a href="http://sass-lang.com/">sass</a> (and other preprocessors), it's trivial to inject a grid system directly into an element styles. Fishnet provides a common interface for maintaining the structure and consistency provided by a grid, while maintaining logical sematic elements within the markup.
+  %br
+  %p Fishnet builds upon <a href="http://semantic.gs/">semantic.gs</a> by providing additional column type mixins and exposing functions in order to cover every pixel available on the screen. The core components of fishnet will not insert any classes or other elements into your stylesheets (<em>unless you tell it to</em>). It's all based on variables, functions, and mixins. This allows an application to use grid elements when needed and get out of the way when they're not.
+
+.section
+  %h2.section-heading Install
+
+.section
+  %h2.section-heading Variables, Functions, Mixins
+  %h3.section-subheading Variables <span><code>fishnet/_settings.sass</code></span>
+  %p Fishnet requires a few base variables to perform calculations for generating the grid system. The grid system comes with a set of a default values, but these can be easily overriden in an application. Define the variables below prior to mixing in any of the columns.
+  %table.box.vborder.banded.thead-decorate
+    %thead
+      %tr
+        %th Variable
+        %th Default
+        %th Usage
+    %tbody
+      %tr
+        %td <code>$column-width</code>
+        %td <code>60px</code>
+        %td The width of an individual container
+      %tr
+        %td <code>$gutter-width</code>
+        %td <code>20px</code>
+        %td The total gutter spacing between a column
+      %tr
+        %td <code>$columns</code>
+        %td <code>12</code>
+        %td The number of columns that make up a row
+      %tr
+        %td <code>$total-width</code>
+        %td <code>100%</code>
+        %td The total width of a row
+  .notification.important
+    %p <strong>Note!</strong> In a fixed width grid system, set <code>$total-width</code> to the max width of your grid in pixels
+  .notification.important
+    %p <strong>Pro Tip!</strong> Use the <code>+grid-settings</code> mixin for one lining the structure of a grid (useful for redefining a grid within <code>@media</code> queries)
+
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        @media (min-width: 1200px)
+          // $total-width, $columns, $column-width, $gutter-width
+          +grid-settings(100%, 12, 74px, 8px)
+
+  -# Functions
+  %h3.section-subheading Functions <span><code>fishnet/_functions.sass</code></span>
+  %p The fishnet functions are the basis for generating column mixins. These functions can also be used on elements inside columns or anywhere else within an application where it's needed to set the width of an element in relation to a column mixin.
+  %table.box.vborder.banded.thead-decorate
+    %thead
+      %tr
+        %th Function
+        %th Parameters
+        %th Usage
+    %tbody
+      %tr
+        %td <code>column_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>standard</strong> column within the grid system
+      %tr
+        %td <code>column_pull_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>pull</strong> column within the grid system
+      %tr
+        %td <code>column_push_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>push</strong> column within the grid system
+      %tr
+        %td <code>column_full_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>full</strong> column within the grid system
+      %tr
+        %td <code>column_offset_width</code>
+        %td <code>$offset:0</code>
+        %td Returns the <code>width</code> of the <strong>offset</strong> within offset columns
+      %tr
+        %td <code>gutter_space</code>
+        %td <code>$offset:0</code>
+        %td Returns the <code>width</code> of <strong>spacing</strong> between columns
+  .notification.important
+    %p <strong>Note!</strong> There are 3 undocumented utility helper functions within <code>fishnet/_functions.sass</code>. These are used internally, but can be useful in creating other types of columns.
+  .notification.important
+    %p <strong>Pro Tip!</strong> To get the width of a push/pull column that doesn't resize, call the <code>column_width</code> function
+
+  -# Mixins
+  %h3.section-subheading Mixins <span><code>fishnet/_mixins.sass</code></span>
+  %p Fishnet's mixins are the core public interface to be used within an application. They provide various type of columns to be injected into an elements style. Checkout the <a href="#structure_examples">structure examples</a> below for a more visual description.
+  %table.box.vborder.banded.thead-decorate
+    %thead
+      %tr
+        %th Mixin
+        %th Parameters
+        %th Usage
+    %tbody
+      %tr
+        %td <code>+column</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Standard column with left and right margins equal to the <code>$gutter-width</code>
+      %tr
+        %td <code>+column-pull</code>
+        %td <code>$x, $columns:$columns, $resize:true</code>
+        %td Pulled left column with <code>margin-left:0</code>, adds <code>$gutter-width / 2</code> to overall width
+      %tr
+        %td <code>+column-push</code>
+        %td <code>$x, $columns:$columns, $resize:true</code>
+        %td Pushed right column with <code>margin-right:0</code>, adds <code>$gutter-width / 2</code> to overall width
+      %tr
+        %td <code>+column-full</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Pulled &amp; pushed column with outside margins set to 0, adds <code>$gutter-width</code> to overall width
+      %tr
+        %td <code>+column-offset-left</code>
+        %td <code>$x, $offset:0, $columns:$columns</code>
+        %td Draws a standard column, offset left by number of columns
+      %tr
+        %td <code>+column-offset-left-pull</code>
+        %td <code>$x, $offset:0, $columns:$columns, $resize:true</code>
+        %td Draws a pulled column, offset left by number of columns, with an adjusted width
+      %tr
+        %td <code>+column-offset-left-push</code>
+        %td <code>$x, $offset:0, $columns:$columns, $resize:true</code>
+        %td Draws a pushed column, offset left by number of columns, with an adjusted width
+      %tr
+        %td <code>+column-offset-left-full</code>
+        %td <code>$x, $offset:0, $columns:$columns</code>
+        %td Pulled &amp; pushed column, offset left by number of columns, with an adjusted width
+      %tr
+        %td <code>+column-offset-right</code>
+        %td <code>$x, $offset:0, $columns:$columns</code>
+        %td Draws a standard column, offset right by number of columns
+      %tr
+        %td <code>+column-offset-right-pull</code>
+        %td <code>$x, $offset:0, $columns:$columns, $resize:true</code>
+        %td Draws a pulled column, offset right by number of columns, with an adjusted width
+      %tr
+        %td <code>+column-offset-right-push</code>
+        %td <code>$x, $offset:0, $columns:$columns, $resize:true</code>
+        %td Draws a pushed column, offset right by number of columns, with an adjusted width
+      %tr
+        %td <code>+column-offset-right-full</code>
+        %td <code>$x, $offset:0, $columns:$columns</code>
+        %td Pulled &amp; pushed column, offset right by number of columns, with an adjusted width
+  .notification.important
+    %p <strong>Note!</strong> The <code>$columns</code> parameter is used for nested grids (see below), by default columns will use the global setting from the <code>$columns</code> variable
+  .notification.important
+    %p <strong>Note!</strong> Where there is a <code>$resize</code> parameter for pull/push columns, passing false will not resize the column
+  .notification.important
+    %p <strong>Note!</strong> The <code>$offset</code> parameter relates to the number of columns to offset by: <code>+column-offset-left(8,4)</code>
 
 
-%h2 Standard Columns <code>+column(n)</code>
-- (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-#{i}'></div>"}
-  - if num_columns - i > 0
-    ! #{"<div class='fn-col-#{num_columns - i}'></div>"}
-.clearfixer
+.section
+  %h2.section-heading Usage
 
-- (1..num_columns).each do |i|
-  .fn-col-1
-.clearfixer
+.section
+  %h2.section-heading Helpers
 
+.section
+  %h2.section-heading#structure_examples Example Structures
 
-%h2 Push / Pull Horizontal Columns <code>+column-push(n) / +column-pull(n)</code>
-- (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-pull-#{i}'></div>"}
-  - if num_columns - i > 0
-    ! #{"<div class='fn-col-push-#{num_columns - i} alt'></div>"}
-  - else
-    ! #{"<div class='fn-col-push-#{num_columns} alt'></div>"}
-.clearfixer
+  %h3 Standard columns
+  %p Usage: <code>+column(n)</code>
+  .sub-section
+    - (1..@num_columns).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-#{i}'></div>"}
+      - if @num_columns - i > 0
+        ! #{"<div class='fn-col-#{@num_columns - i}'></div>"}
 
-%h2 Full Horizontal Columns (pushed and pulled) <code>+column-full(n)</code>
-- (1..num_columns).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-full-#{i}'></div>"}
-  - if num_columns - i > 0
-    ! #{"<div class='fn-col-full-#{num_columns - i} alt'></div>"}
-.clearfixer
+  %h3 Push/Pull columns
+  %p Usage: <code>+column-push(n)</code> and <code>+column-pull(n)</code>
+  .sub-section
+    - (1..@num_columns).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-pull-#{i}'></div>"}
+      - if @num_columns - i > 0
+        ! #{"<div class='fn-col-push-#{@num_columns - i} alt'></div>"}
+      - else
+        ! #{"<div class='fn-col-push-#{@num_columns} alt'></div>"}
 
-%h2 Offset Column Left <code>+column-offset-left(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-left-#{i}'></div>"}
-.clearfixer
+  %h3 Full columns
+  %p Usage: <code>+column-full(n)</code>
+  .sub-section
+    - (1..@num_columns).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-full-#{i}'></div>"}
+      - if @num_columns - i > 0
+        ! #{"<div class='fn-col-full-#{@num_columns - i} alt'></div>"}
 
-%h2 Offset Column Left Pull <code>+column-offset-left-pull(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-left-pull-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns left
+  %p Usage: <code>+column-offset-left(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-left-#{i}'></div>"}
 
-%h2 Offset Column Left Push <code>+column-offset-left-push(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-left-push-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns left pull
+  %p Usage: <code>+column-offset-left-pull(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-left-pull-#{i}'></div>"}
 
-%h2 Offset Column Left Full <code>+column-offset-left-full(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-left-full-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns left push
+  %p Usage: <code>+column-offset-left-push(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-left-push-#{i}'></div>"}
 
-%h2 Offset Column Right <code>+column-offset-right(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-right-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns left full
+  %p Usage: <code>+column-offset-left-full(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-left-full-#{i}'></div>"}
 
-%h2 Offset Column Right Pull <code>+column-offset-right-pull(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-right-pull-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns right
+  %p Usage: <code>+column-offset-right(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-right-#{i}'></div>"}
 
-%h2 Offset Column Right Push <code>+column-offset-right-push(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-right-push-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns right pull
+  %p Usage: <code>+column-offset-right-pull(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-right-pull-#{i}'></div>"}
 
-%h2 Offset Column Right Full <code>+column-offset-right-full(n, by)</code>
-- (1..num_columns - 1).to_a.reverse.each do |i|
-  ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
-.clearfixer
+  %h3 Offset columns right push
+  %p Usage: <code>+column-offset-right-push(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-right-push-#{i}'></div>"}
 
+  %h3 Offset columns right full
+  %p Usage: <code>+column-offset-right-full(n, by)</code>
+  .sub-section
+    - (1..@num_columns - 1).to_a.reverse.each do |i|
+      ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
 
-:javascript
-  var h1 = document.getElementsByTagName('h1')[0]
-  window.onresize = function() {
-    h1.innerHTML = 'Fishnet.gs: ' + window.innerWidth + 'px'
-  }
+.section
+  %h2.section-heading Resources
 

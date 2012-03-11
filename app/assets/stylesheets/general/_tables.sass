@@ -1,0 +1,101 @@
+
+// Tables
+table
+  margin: 0.5em 0
+  width: 100%
+
+  caption
+    font-size: 0.85em
+    font-weight: bold
+    text-align: left
+    margin-bottom: .5em
+
+  th, td
+    border-top: 1px solid $greyC
+    line-height: 1
+    text-align: left
+    padding: 0.6em
+
+  th
+    font-weight: bold
+    vertical-align: bottom
+
+  thead:first-child tr th,
+  thead:first-child tr td
+    border-top: 0
+
+  tbody td > a:hover
+    text-decoration: underline
+
+  tfoot
+    font-size: 0.85em
+
+  tbody + tbody
+    border-top: 2px solid $greyC
+
+  th .ascending .caret
+    margin-top: 6px
+  th .descending .caret
+    margin-top: 2px
+
+  th .ascending:hover .caret,
+  th .unsorted:hover .caret-north-south:after
+    border-top-color: $blue
+
+  th .descending:hover .caret,
+  th .unsorted:hover .caret-north-south
+    border-bottom-color: $blue
+
+// Outer box
+table.box
+  thead tr
+    border: 1px solid $greyC
+  tbody tr
+    border: 1px solid $greyC
+  tfoot tr
+    border: 1px solid $greyC
+
+  thead th
+    &:first-child
+      border-left-color: $greyC !important
+    &:last-child
+      border-right-color: $greyC !important
+  tbody td
+    &:first-child
+      border-left-color: $greyC !important
+    &:last-child
+      border-right-color: $greyC !important
+
+// Vertical borders
+table.vborder
+  thead th
+    border-left: 1px solid $greyC
+    border-right: 1px solid $greyC
+    &:first-child
+      border-left-color: transparent
+    &:last-child
+      border-right-color: transparent
+
+  tbody td
+    border-left: 1px solid $greyC
+    border-right: 1px solid $greyC
+    &:first-child
+      border-left-color: transparent
+    &:last-child
+      border-right-color: transparent
+
+// Banded table
+table.banded tbody tr
+  &:nth-child(odd), &.odd
+    background-color: transparent
+  &:nth-child(even), &.even
+    background-color: $greyE
+
+// Colorize the table header background
+table.thead-decorate thead
+  background-color: darken($greyE, 5%)
+
+// Colorize the table footer background
+table.tfoot-decorate tfoot
+  background-color: $off_white
+

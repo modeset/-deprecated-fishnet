@@ -12,11 +12,16 @@
     %meta(name="apple-touch-fullscreen" content="YES")
     %meta(name="apple-mobile-web-app-capable" content="YES")
     %meta(name="apple-mobile-web-app-status-bar-style" content="black")
-    %link(rel="apple-touch-startup-image" href="startup.png")
 
     %link(href="/assets/application.css" rel="stylesheet" type="text/css")
 
   %body(role="document")
-    .container(role="main" aria-live="polite" aria-atomic="true")
+    %section.page-info.fixed
+      %span#page_dimensions Dimensions
+
+    %section.container(role="main" aria-live="polite" aria-atomic="true")
       = yield
+
+    %script(src="/assets/prettify.js" type="text/javascript" charset="utf-8")
+    %script(src="/assets/application.js" type="text/javascript" charset="utf-8")
 
