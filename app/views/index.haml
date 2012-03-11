@@ -9,7 +9,7 @@
   %br
   %p Fishnet follows the philosophy that your html markup should be as semantic as possible, while maintaining the flexibility and order of a grid system. With <a href="http://sass-lang.com/">sass</a> (and other preprocessors), it's trivial to inject a grid system directly into an element styles. Fishnet provides a common interface for maintaining the structure and consistency provided by a grid, while maintaining logical sematic elements within the markup.
   %br
-  %p Fishnet builds upon <a href="http://semantic.gs/">semantic.gs</a> by providing additional column type mixins and exposing functions in order to cover every pixel available on the screen. The core components of fishnet will not insert any classes or other elements into your stylesheets (<em>unless you tell it to</em>). It's all based on variables, functions, and mixins. This allows an application to use grid elements when needed and get out of the way when they're not.
+  %p Fishnet builds upon <a href="http://semantic.gs/">semantic.gs</a> by providing additional column type mixins and exposing functions in order to cover every pixel available on the screen. The core components of fishnet will not insert any classes or other elements into your stylesheets (<em><a href="#helpers">unless you tell it to</a></em>). It's all based on variables, functions, and mixins. This allows an application to use grid elements when needed and get out of the way when they're not.
 
 .section
   %h2.section-heading Install
@@ -161,8 +161,44 @@
 .section
   %h2.section-heading Usage
 
-.section
+.section#helpers
   %h2.section-heading Helpers
+  %h3.section-subheading Mesh <span><code>fishnet/helpers/_mesh.sass</code></span>
+  %p We sort of lied to you. Sometimes it's pretty useful to generate non-semantic classes for building a grid system. Fishnet provides some helper mixins for creating these non-semantic classes. A typical use case is building quick prototypes, admins or pages where accessibility and SEO is not an issue. Use these sparingly, as they can quickly create a lot of classes in your compiled CSS.
+  %table.box.vborder.banded.thead-decorate
+    %thead
+      %tr
+        %th Mixin
+        %th Parameters
+        %th Usage
+    %tbody
+      %tr
+        %td <code>+add-column-classes</code>
+        %td <code>$name:"col", $columns:$columns</code>
+        %td Generates <code>1..$columns</code> &mdash; <strong>standard</strong> column classes for name (<code>.col-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-pull-classes</code>
+        %td <code>$name:"col-pull", $columns:$columns, $resize:true</code>
+        %td Generates <code>1..$columns</code> &mdash; <strong>pull</strong> column classes for name (<code>.col-pull-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-push-classes</code>
+        %td <code>$name:"col-push", $columns:$columns, $resize:true</code>
+        %td Generates <code>1..$columns</code> &mdash; <strong>push</strong> column classes for name (<code>.col-push-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-full-classes</code>
+        %td <code>$name:"col-full", $columns:$columns</code>
+        %td Generates <code>1..$columns</code> &mdash; <strong>full</strong> column classes for name (<code>.col-full-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-left-classes</code>
+        %td <code>$name:"col-offset-left", $columns:$columns</code>
+        %td Generates <code>1..$columns</code> &mdash; <strong>offset left</strong> column classes for name (<code>.col-offset-left-<em>n</em></code>)
+
+  .notification.warning
+    %p <strong>Heads Up!</strong> By default this module is not included and needs to be imported: <code>@import fishnet/helpers/mesh</code>
+  .notification.danger
+    %p <strong>Danger!</strong> If only using the typical column classes (<code>standard</code>, <code>push</code>, <code>pull</code>, <code>full</code>) generating these with 12 columns, would equate to 48 classes!
+  .notification.important
+    %p <strong>Note!</strong> Whatever name is passed will always generate a number for the postfix, so if passing <code>"c"</code> for the <code>$name</code> parameter, the output will be <code>.c-<em>n</em></code> as the output
 
 .section
   %h2.section-heading#structure_examples Example Structures
