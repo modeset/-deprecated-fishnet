@@ -60,13 +60,11 @@ $radii: 0.4em
 @import general/wells
 @import general/notifications
 @import general/fishnet
-// +grid-settings(fixed, 12, 74px, 8px)
 @import general/layout
 
-
 // Debugging with mesh styles
-@import fishnet/helpers/mesh
-@import fishnet/helpers/mesh-guide
+@import fishnet/mesh
+@import general/mesh-guide
 +add-guide-column-classes()
 +add-guide-column-pull-classes()
 +add-guide-column-push-classes()

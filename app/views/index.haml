@@ -17,7 +17,7 @@
 .section
   %h2.section-heading Variables, Functions, Mixins
   %h3.section-subheading Variables <span><code>fishnet/_settings.sass</code></span>
-  %p Fishnet requires a few base variables to perform calculations for generating the grid system. The grid system comes with a set of a default values, but these can be easily overriden in an application. Define the variables below prior to mixing in any of the columns.
+  %p Fishnet requires a few base variables to perform calculations for generating the grid system. The grid system comes with a set of a default values, but these can be easily overriden in an application. Define the variables below <strong>prior</strong> to mixing in any of the column settings within a layout.
   %table.box.vborder.banded.thead-decorate
     %thead
       %tr
@@ -28,7 +28,7 @@
       %tr
         %td <code>$column-width</code>
         %td <code>60px</code>
-        %td The width of an individual container
+        %td The width of an individual column
       %tr
         %td <code>$gutter-width</code>
         %td <code>20px</code>
@@ -52,45 +52,6 @@
         @media (min-width: 1200px)
           // $total-width, $columns, $column-width, $gutter-width
           +grid-settings(100%, 12, 74px, 8px)
-
-  -# Functions
-  %h3.section-subheading Functions <span><code>fishnet/_functions.sass</code></span>
-  %p The fishnet functions are the basis for generating column mixins. These functions can also be used on elements inside columns or anywhere else within an application where it's needed to set the width of an element in relation to a column mixin.
-  %table.box.vborder.banded.thead-decorate
-    %thead
-      %tr
-        %th Function
-        %th Parameters
-        %th Usage
-    %tbody
-      %tr
-        %td <code>column_width</code>
-        %td <code>$x, $columns:$columns</code>
-        %td Returns the <code>width</code> of a <strong>standard</strong> column within the grid system
-      %tr
-        %td <code>column_pull_width</code>
-        %td <code>$x, $columns:$columns</code>
-        %td Returns the <code>width</code> of a <strong>pull</strong> column within the grid system
-      %tr
-        %td <code>column_push_width</code>
-        %td <code>$x, $columns:$columns</code>
-        %td Returns the <code>width</code> of a <strong>push</strong> column within the grid system
-      %tr
-        %td <code>column_full_width</code>
-        %td <code>$x, $columns:$columns</code>
-        %td Returns the <code>width</code> of a <strong>full</strong> column within the grid system
-      %tr
-        %td <code>column_offset_width</code>
-        %td <code>$offset:0</code>
-        %td Returns the <code>width</code> of the <strong>offset</strong> within offset columns
-      %tr
-        %td <code>gutter_space</code>
-        %td <code>$offset:0</code>
-        %td Returns the <code>width</code> of <strong>spacing</strong> between columns
-  .notification.important
-    %p <strong>Note!</strong> There are 3 undocumented utility helper functions within <code>fishnet/_functions.sass</code>. These are used internally, but can be useful in creating other types of columns.
-  .notification.important
-    %p <strong>Pro Tip!</strong> To get the width of a push/pull column that doesn't resize, call the <code>column_width</code> function
 
   -# Mixins
   %h3.section-subheading Mixins <span><code>fishnet/_mixins.sass</code></span>
@@ -157,14 +118,53 @@
   .notification.important
     %p <strong>Note!</strong> The <code>$offset</code> parameter relates to the number of columns to offset by: <code>+column-offset-left(8,4)</code>
 
+  -# Functions
+  %h3.section-subheading Functions <span><code>fishnet/_functions.sass</code></span>
+  %p The fishnet functions are the basis for generating column mixins. These functions can also be used on elements inside columns or anywhere else within an application where it's needed to set the width of an element in relation to a column mixin.
+  %table.box.vborder.banded.thead-decorate
+    %thead
+      %tr
+        %th Function
+        %th Parameters
+        %th Usage
+    %tbody
+      %tr
+        %td <code>column_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>standard</strong> column within the grid system
+      %tr
+        %td <code>column_pull_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>pull</strong> column within the grid system
+      %tr
+        %td <code>column_push_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>push</strong> column within the grid system
+      %tr
+        %td <code>column_full_width</code>
+        %td <code>$x, $columns:$columns</code>
+        %td Returns the <code>width</code> of a <strong>full</strong> column within the grid system
+      %tr
+        %td <code>column_offset_width</code>
+        %td <code>$offset:0</code>
+        %td Returns the <code>width</code> of the <strong>offset</strong> within offset columns
+      %tr
+        %td <code>gutter_space</code>
+        %td <code>$offset:0</code>
+        %td Returns the <code>width</code> of <strong>spacing</strong> between columns
+  .notification.important
+    %p <strong>Note!</strong> There are 3 undocumented utility helper functions within <code>fishnet/_functions.sass</code>. These are used internally, but can be useful in creating other types of columns.
+  .notification.important
+    %p <strong>Pro Tip!</strong> To get the width of a push/pull column that doesn't resize, call the <code>column_width</code> function
+
 
 .section
   %h2.section-heading Usage
 
 .section#helpers
   %h2.section-heading Helpers
-  %h3.section-subheading Mesh <span><code>fishnet/helpers/_mesh.sass</code></span>
-  %p We sort of lied to you. Sometimes it's pretty useful to generate non-semantic classes for building a grid system. Fishnet provides some helper mixins for creating these non-semantic classes. A typical use case is building quick prototypes, admins or pages where accessibility and SEO is not an issue. Use these sparingly, as they can quickly create a lot of classes in your compiled CSS.
+  %h3.section-subheading Mesh <span><code>fishnet/_mesh.sass</code></span>
+  %p We sort of lied to you. Sometimes it's pretty useful to generate non-semantic classes for building a grid system. Fishnet provides some helper mixins for creating these non-semantic column classes. Use these sparingly, as they can quickly create a lot of classes in your compiled CSS.
   %table.box.vborder.banded.thead-decorate
     %thead
       %tr
@@ -175,30 +175,58 @@
       %tr
         %td <code>+add-column-classes</code>
         %td <code>$name:"col", $columns:$columns</code>
-        %td Generates <code>1..$columns</code> &mdash; <strong>standard</strong> column classes for name (<code>.col-<em>n</em></code>)
+        %td <code>1..$columns</code> &mdash; <strong>standard</strong> column classes for name (<code>.col-<em>n</em></code>)
       %tr
         %td <code>+add-column-pull-classes</code>
         %td <code>$name:"col-pull", $columns:$columns, $resize:true</code>
-        %td Generates <code>1..$columns</code> &mdash; <strong>pull</strong> column classes for name (<code>.col-pull-<em>n</em></code>)
+        %td <code>1..$columns</code> &mdash; <strong>pull</strong> column classes for name (<code>.col-pull-<em>n</em></code>)
       %tr
         %td <code>+add-column-push-classes</code>
         %td <code>$name:"col-push", $columns:$columns, $resize:true</code>
-        %td Generates <code>1..$columns</code> &mdash; <strong>push</strong> column classes for name (<code>.col-push-<em>n</em></code>)
+        %td <code>1..$columns</code> &mdash; <strong>push</strong> column classes for name (<code>.col-push-<em>n</em></code>)
       %tr
         %td <code>+add-column-full-classes</code>
         %td <code>$name:"col-full", $columns:$columns</code>
-        %td Generates <code>1..$columns</code> &mdash; <strong>full</strong> column classes for name (<code>.col-full-<em>n</em></code>)
+        %td <code>1..$columns</code> &mdash; <strong>full</strong> column classes for name (<code>.col-full-<em>n</em></code>)
       %tr
         %td <code>+add-column-offset-left-classes</code>
         %td <code>$name:"col-offset-left", $columns:$columns</code>
-        %td Generates <code>1..$columns</code> &mdash; <strong>offset left</strong> column classes for name (<code>.col-offset-left-<em>n</em></code>)
+        %td <code>1..$columns</code> &mdash; <strong>offset left</strong> column classes for name (<code>.col-offset-left-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-left-pull-classes</code>
+        %td <code>$name:"col-offset-left-pull", $columns:$columns, $resize:true</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset left pull</strong> column classes for name (<code>.col-offset-left-pull-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-left-push-classes</code>
+        %td <code>$name:"col-offset-left-push", $columns:$columns, $resize:true</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset left push</strong> column classes for name (<code>.col-offset-left-push-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-left-full-classes</code>
+        %td <code>$name:"col-offset-left-full", $columns:$columns</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset left full</strong> column classes for name (<code>.col-offset-left-full-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-right-classes</code>
+        %td <code>$name:"col-offset-right", $columns:$columns</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset right</strong> column classes for name (<code>.col-offset-right-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-right-pull-classes</code>
+        %td <code>$name:"col-offset-right-pull", $columns:$columns, $resize:true</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset right pull</strong> column classes for name (<code>.col-offset-right-pull-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-right-push-classes</code>
+        %td <code>$name:"col-offset-right-push", $columns:$columns, $resize:true</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset right push</strong> column classes for name (<code>.col-offset-right-push-<em>n</em></code>)
+      %tr
+        %td <code>+add-column-offset-right-full-classes</code>
+        %td <code>$name:"col-offset-right-full", $columns:$columns</code>
+        %td <code>1..$columns</code> &mdash; <strong>offset right full</strong> column classes for name (<code>.col-offset-right-full-<em>n</em></code>)
 
-  .notification.warning
-    %p <strong>Heads Up!</strong> By default this module is not included and needs to be imported: <code>@import fishnet/helpers/mesh</code>
-  .notification.danger
-    %p <strong>Danger!</strong> If only using the typical column classes (<code>standard</code>, <code>push</code>, <code>pull</code>, <code>full</code>) generating these with 12 columns, would equate to 48 classes!
   .notification.important
     %p <strong>Note!</strong> Whatever name is passed will always generate a number for the postfix, so if passing <code>"c"</code> for the <code>$name</code> parameter, the output will be <code>.c-<em>n</em></code> as the output
+  .notification.warning
+    %p <strong>Heads Up!</strong> By default this module is not included and needs to be imported: <code>@import fishnet/mesh</code>
+  .notification.danger
+    %p <strong>Danger!</strong> If only using the typical column classes (<code>standard</code>, <code>push</code>, <code>pull</code>, <code>full</code>) generating these with 12 columns, would equate to 48 classes!
 
 .section
   %h2.section-heading#structure_examples Example Structures
@@ -279,4 +307,12 @@
 
 .section
   %h2.section-heading Resources
+  .well
+    %p &raquo; <a href="http://semantic.gs/">Semantic Grid System</a>
+    %p &raquo; <a href="http://sass-lang.com/">SASS</a>
+    %p &raquo; <a href="https://github.com/modeset/fishnet">Fishnet on Github</a>
+    %p &raquo; <a href="https://github.com/modeset/underoos">Underoos</a>
+
+  %p(style="margin-bottom:1em;")
+    %small Created by <a href="http://www.modeset.com/">Mode Set</a> / <a href="https://raw.github.com/modeset/fishnet/master/LICENSE">MIT Licensed</a>
 
