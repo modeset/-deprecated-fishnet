@@ -1,0 +1,56 @@
+
+@mixin _box-setting($hv:100px)
+  background-color: $grey6
+  height: $hv
+  line-height: $hv
+  margin-bottom: 0.5em
+  text-align: center
+  overflow: hidden
+
+.masthead
+  +column-full(12)
+  +_box-setting(100px)
+
+.gallery
+  +column(12)
+  +_box-setting(300px)
+
+.promo
+  +_box-setting(75px)
+
+.promo.recent
+  +column-pull(6)
+.promo.ancient
+  +column-push(6)
+
+.article
+  +column(6)
+  +_box-setting(100px)
+
+.aside
+  +column-offset-left(4,2)
+  +_box-setting(100px)
+
+.footer
+  +column-full(12)
+  +clearfixer
+  background-color: $grey9
+  margin-bottom: 3em
+
+.footer-nav
+  +column-pull(8)
+  +_box-setting(100px)
+
+.social-nav
+  +column-offset-left-full(3,1)
+  +_box-setting(100px)
+
+.copy, .terms
+  +_box-setting(25px)
+  margin-bottom: 0
+
+.copy
+  +column-offset-right-full(4,2)
+.terms
+  +column-offset-left-full(4,2)
+
