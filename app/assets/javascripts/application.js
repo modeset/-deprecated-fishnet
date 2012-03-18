@@ -16,5 +16,10 @@
     dimensions.html(window.innerWidth + 'px')
   }
 
+  $('#structure_toggler').on('click', function(e) {
+    e.preventDefault()
+    $('#the_structures').toggleClass('in')
+  })
+
 }())
 

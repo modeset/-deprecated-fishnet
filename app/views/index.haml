@@ -13,6 +13,7 @@
 
 .section
   %h2.section-heading Install
+  %p(style="color:#ff00ff;") <em>Needs to be completed</em>
 
 .section
   %h2.section-heading Variables, Functions, Mixins
@@ -112,7 +113,7 @@
         %td <code>$x, $offset:0, $columns:$columns</code>
         %td Pulled &amp; pushed column, offset right by number of columns, with an adjusted width
   .notification.important
-    %p <strong>Note!</strong> The <code>$columns</code> parameter is used for nested grids (see below), by default columns will use the global setting from the <code>$columns</code> variable
+    %p <strong>Note!</strong> The <code>$columns</code> parameter is used for nested grids (<a href="#nested">see below</a>), by default columns will use the global setting from the <code>$columns</code> variable
   .notification.important
     %p <strong>Note!</strong> Where there is a <code>$resize</code> parameter for pull/push columns, passing false will not resize the column
   .notification.important
@@ -160,6 +161,93 @@
 
 .section
   %h2.section-heading Usage
+  %p An <a href="/example">example page</a> has been constructed off of the following styles and markup using various mixins included with fishnet.
+  %pre.prettyprint.pre-column.sass
+    = preserve do
+      :escaped
+        // SASS
+        .container
+          +clearfixer
+          max-width: 1200px
+          margin: 0 auto
+
+        .masthead
+          +column-full(12)
+
+        .gallery
+          +column(12)
+
+        .promo.recent
+          +column-pull(6)
+
+        .promo.ancient
+          +column-push(6)
+
+        .article
+          +column(6)
+
+        .aside
+          +column-offset-left(4,2)
+
+        // Create a faux row for nested columns
+        .footer
+          +column-full(12)
+          +clearfixer
+
+        .footer-nav
+          +column-pull(8)
+
+        .social-nav
+          +column-offset-left-full(3,1)
+
+        .copy
+          +column-offset-right-full(4,2)
+
+        .terms
+          +column-offset-left-full(4,2)
+  %pre.prettyprint.pre-column.markup
+    = preserve do
+      :escaped
+        <!-- Markup -->
+        <section class="container">
+          <section class="masthead">
+            ...
+          </section>
+
+          <section class="gallery">
+            ...
+          </section>
+
+          <section class="promo recent">
+            ...
+          </section>
+          <section class="promo ancient">
+            ...
+          </section>
+
+          <article class="article">
+            ...
+          </article>
+          <aside class="aside">
+            ...
+          </aside>
+
+          <footer class="footer">
+            <nav class="footer-nav">
+              ...
+            </nav>
+            <nav class="social-nav">
+              ...
+            </nav>
+
+            <section class="copy">
+              ...
+            </section>
+            <section class="terms">
+              ...
+            </section>
+          </footer>
+        </section>
 
 .section#helpers
   %h2.section-heading Helpers
@@ -230,109 +318,113 @@
 
 .section
   %h2.section-heading#structure_examples Example Structures
+  %p The following structures showcase the various mixins applied to simple boxes
+  %p
+    %a#structure_toggler(href="#") Toggle column structures to view or hide!
 
-  %h3 Standard columns
-  %p Usage: <code>+column(n)</code>
-  .sub-section
-    - (1..@num_columns).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-#{i}'></div>"}
-      - if @num_columns - i > 0
-        ! #{"<div class='fn-col-#{@num_columns - i}'></div>"}
+  %section#the_structures.collapse
+    %h3 Standard columns
+    %p Usage: <code>+column(n)</code>
+    .sub-section
+      - (1..@num_columns).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-#{i}'></div>"}
+        - if @num_columns - i > 0
+          ! #{"<div class='fn-col-#{@num_columns - i}'></div>"}
 
-  %h3 Push/Pull columns
-  %p Usage: <code>+column-push(n)</code> and <code>+column-pull(n)</code>
-  .sub-section
-    - (1..@num_columns).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-pull-#{i}'></div>"}
-      - if @num_columns - i > 0
-        ! #{"<div class='fn-col-push-#{@num_columns - i} alt'></div>"}
-      - else
-        ! #{"<div class='fn-col-push-#{@num_columns} alt'></div>"}
+    %h3 Push/Pull columns
+    %p Usage: <code>+column-push(n)</code> and <code>+column-pull(n)</code>
+    .sub-section
+      - (1..@num_columns).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-pull-#{i}'></div>"}
+        - if @num_columns - i > 0
+          ! #{"<div class='fn-col-push-#{@num_columns - i} alt'></div>"}
+        - else
+          ! #{"<div class='fn-col-push-#{@num_columns} alt'></div>"}
 
-  %h3 Full columns
-  %p Usage: <code>+column-full(n)</code>
-  .sub-section
-    - (1..@num_columns).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-full-#{i}'></div>"}
-      - if @num_columns - i > 0
-        ! #{"<div class='fn-col-full-#{@num_columns - i} alt'></div>"}
+    %h3 Full columns
+    %p Usage: <code>+column-full(n)</code>
+    .sub-section
+      - (1..@num_columns).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-full-#{i}'></div>"}
+        - if @num_columns - i > 0
+          ! #{"<div class='fn-col-full-#{@num_columns - i} alt'></div>"}
 
-  %h3 Offset columns left
-  %p Usage: <code>+column-offset-left(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-left-#{i}'></div>"}
+    %h3 Offset columns left
+    %p Usage: <code>+column-offset-left(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-left-#{i}'></div>"}
 
-  %h3 Offset columns left pull
-  %p Usage: <code>+column-offset-left-pull(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-left-pull-#{i}'></div>"}
+    %h3 Offset columns left pull
+    %p Usage: <code>+column-offset-left-pull(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-left-pull-#{i}'></div>"}
 
-  %h3 Offset columns left push
-  %p Usage: <code>+column-offset-left-push(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-left-push-#{i}'></div>"}
+    %h3 Offset columns left push
+    %p Usage: <code>+column-offset-left-push(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-left-push-#{i}'></div>"}
 
-  %h3 Offset columns left full
-  %p Usage: <code>+column-offset-left-full(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-left-full-#{i}'></div>"}
+    %h3 Offset columns left full
+    %p Usage: <code>+column-offset-left-full(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-left-full-#{i}'></div>"}
 
-  %h3 Offset columns right
-  %p Usage: <code>+column-offset-right(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-right-#{i}'></div>"}
+    %h3 Offset columns right
+    %p Usage: <code>+column-offset-right(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-right-#{i}'></div>"}
 
-  %h3 Offset columns right pull
-  %p Usage: <code>+column-offset-right-pull(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-right-pull-#{i}'></div>"}
+    %h3 Offset columns right pull
+    %p Usage: <code>+column-offset-right-pull(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-right-pull-#{i}'></div>"}
 
-  %h3 Offset columns right push
-  %p Usage: <code>+column-offset-right-push(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-right-push-#{i}'></div>"}
+    %h3 Offset columns right push
+    %p Usage: <code>+column-offset-right-push(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-right-push-#{i}'></div>"}
 
-  %h3 Offset columns right full
-  %p Usage: <code>+column-offset-right-full(n, by)</code>
-  .sub-section
-    - (1..@num_columns - 1).to_a.reverse.each do |i|
-      ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
+    %h3 Offset columns right full
+    %p Usage: <code>+column-offset-right-full(n, by)</code>
+    .sub-section
+      - (1..@num_columns - 1).to_a.reverse.each do |i|
+        ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
 
-  %h3 Nested columns
-  %p Fishnet supports nested columns for all column types, but doesn't provide the concept of rows. To nest columns just roll a usual column and include a <code>micro clearfix</code> in what would be the row. Your nested columns need to pass the number of columns occupied by the row.
-  .sub-section
-    .nested-outer
-      .nested-inner-pull
-      .nested-inner-push
-    .nested-outer
-      .nested-inner-pull
-      .nested-inner-push
+    %h3#nested Nested columns
+    %p Fishnet supports nested columns for all column types, but doesn't provide the concept of rows. To nest columns just roll a usual column and include a <code>micro clearfix</code> in what would be the row. Your nested columns need to pass the number of columns occupied by the row.
+    .sub-section
+      .nested-outer
+        .nested-inner-pull
+        .nested-inner-push
+      .nested-outer
+        .nested-inner-pull
+        .nested-inner-push
 
-  %pre.prettyprint
-    = preserve do
-      :escaped
-        // SASS
-        .nested-outer
-          +column(6)
-          +clearfixer
-        .nested-inner
-          +column(3,6)
+    %pre.prettyprint
+      = preserve do
+        :escaped
+          // SASS
+          .nested-outer
+            +column(6)
+            +clearfixer
+          .nested-inner
+            +column(3,6)
 
-  %pre.prettyprint
-    = preserve do
-      :escaped
-        <!-- Markup -->
-        <section class="nested-outer">
-          <article class="nested-inner">...</article>
-          <article class="nested-inner">...</article>
-        </section>
+    %pre.prettyprint
+      = preserve do
+        :escaped
+          <!-- Markup -->
+          <section class="nested-outer">
+            <article class="nested-inner">...</article>
+            <article class="nested-inner">...</article>
+          </section>
 
 .section
   %h2.section-heading Resources

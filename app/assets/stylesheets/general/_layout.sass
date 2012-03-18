@@ -34,6 +34,22 @@
   & + p
     margin-bottom: 1em
 
+.pre-column
+  width: 48%
+  float: left
+  &.sass
+    margin-right: 1%
+  &.markup
+    margin-left: 1%
+
+// Accordians
+.collapse
+  position: relative
+  overflow: hidden
+  height: 0
+  &.in
+    height: auto
+
 .page-info.fixed
   position: fixed
   top: 0
@@ -46,7 +62,12 @@
   color: $greyC
   font-weight: bold
   float: right
+  background: rgba(white,0.9)
+  padding: $radii
+  -webkit-border-radius: $radii
+  -moz-border-radius: $radii
+  border-radius: $radii
 
-.page-info + .container
+body > .container
   margin-top: 3em
 
