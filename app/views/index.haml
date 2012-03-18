@@ -161,7 +161,16 @@
 
 .section
   %h2.section-heading Usage
-  %p An <a href="/example">example page</a> has been constructed off of the following styles and markup using various mixins included with fishnet.
+  %p To apply the various column classes, first define your grid layout, then mixin the desired column types into an element. Below is an example layout for a page.
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        // Define grid setting variables
+        $column-width: 74px
+        $gutter-width: 8px
+        $columns: 12
+        $total-width: 100%
+
   %pre.prettyprint.pre-column.sass
     = preserve do
       :escaped
@@ -249,6 +258,37 @@
           </footer>
         </section>
 
+  %p
+    %a#example_toggler(href="#") View the example from the code above
+  #the_example.collapse
+    %section.masthead
+      %code +column-full(12)
+
+    %section.gallery
+      %code +column(12)
+
+    %section.promo.recent
+      %code +column-pull(6)
+
+    %section.promo.ancient
+      %code +column-push(6)
+
+    %article.article
+      %code +column(6)
+
+    %aside.aside
+      %code +column-offset-left(4,2)
+
+    %footer.footer
+      %nav.footer-nav
+        %code +column-pull(8)
+      %nav.social-nav
+        %code +column-offset-left-full(3,1)
+      %section.copy
+        %code +column-offset-right-full(4,2)
+      %section.terms
+        %code +column-offset-left-full(4,2)
+
 .section#helpers
   %h2.section-heading Helpers
   %h3.section-subheading Mesh <span><code>fishnet/_mesh.sass</code></span>
@@ -320,7 +360,7 @@
   %h2.section-heading#structure_examples Example Structures
   %p The following structures showcase the various mixins applied to simple boxes
   %p
-    %a#structure_toggler(href="#") Toggle column structures to view or hide!
+    %a#structure_toggler(href="#") View all column structures
 
   %section#the_structures.collapse
     %h3 Standard columns

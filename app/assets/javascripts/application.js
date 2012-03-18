@@ -21,5 +21,10 @@
     $('#the_structures').toggleClass('in')
   })
 
+  $('#example_toggler').on('click', function(e) {
+    e.preventDefault()
+    $('#the_example').toggleClass('in')
+  })
+
 }())
 
