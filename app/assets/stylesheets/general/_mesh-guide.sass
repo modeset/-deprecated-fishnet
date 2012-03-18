@@ -18,6 +18,33 @@ $fn-box-border: 0 solid transparent !default
   &.alt
     background-color: lighten($fn-box-bg-color, 10%)
 
+.nested-outer
+  +column(6)
+  +clearfixer
+  background-color: $fn-box-bg-color
+  border: $fn-box-border
+  height: $fn-box-height * 2
+
+.nested-inner-pull,
+.nested-inner-push
+  background-color: lighten($fn-box-bg-color, 10%)
+  border: 1px solid blue
+  height: $fn-box-height
+  margin-top: $fn-box-height * 0.5
+  color: $fn-box-color
+  font-weight: bold
+  line-height: $fn-box-height
+  text-align: center
+
+.nested-inner-pull
+  +column-pull(3,6)
+  &:after
+    content: "nested pulled"
+.nested-inner-push
+  +column-push(3,6)
+  &:after
+    content: "nested pushed"
+
 @mixin mesh-message($value, $prefix:"", $postfix:"")
   &:after
     content: "#{$prefix}#{$value}#{$postfix}"

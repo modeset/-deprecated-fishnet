@@ -305,6 +305,35 @@
     - (1..@num_columns - 1).to_a.reverse.each do |i|
       ! #{"<div class='fn-col-offset-right-full-#{i}'></div>"}
 
+  %h3 Nested columns
+  %p Fishnet supports nested columns for all column types, but doesn't provide the concept of rows. To nest columns just roll a usual column and include a <code>micro clearfix</code> in what would be the row. Your nested columns need to pass the number of columns occupied by the row.
+  .sub-section
+    .nested-outer
+      .nested-inner-pull
+      .nested-inner-push
+    .nested-outer
+      .nested-inner-pull
+      .nested-inner-push
+
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        // SASS
+        .nested-outer
+          +column(6)
+          +clearfixer
+        .nested-inner
+          +column(3,6)
+
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        <!-- Markup -->
+        <section class="nested-outer">
+          <article class="nested-inner">...</article>
+          <article class="nested-inner">...</article>
+        </section>
+
 .section
   %h2.section-heading Resources
   .well
