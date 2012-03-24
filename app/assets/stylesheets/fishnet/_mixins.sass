@@ -3,14 +3,21 @@
 
 // ### Typical Columns
 
-@mixin column($x, $columns:$columns)
+@mixin base-column
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+  display: block
   float: left
+
+@mixin column($x, $columns:$columns)
+  +base-column
   margin-left: gutter_space($columns)
   margin-right: gutter_space($columns)
   width: column_width($x, $columns)
 
 @mixin column-pull($x, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: 0
   margin-right: gutter_space($columns)
   @if $resize == true
@@ -19,7 +26,7 @@
     width: column_width($x, $columns)
 
 @mixin column-push($x, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: gutter_space($columns)
   margin-right: 0
   @if $resize == true
@@ -28,7 +35,7 @@
     width: column_width($x, $columns)
 
 @mixin column-full($x, $columns:$columns)
-  float: left
+  +base-column
   margin-left: 0
   margin-right: 0
   width: column_full_width($x, $columns)
@@ -37,13 +44,13 @@
 // ### Offset Columns
 
 @mixin column-offset-left($x, $offset:0, $columns:$columns)
-  float: left
+  +base-column
   margin-left: offset_width($offset)
   margin-right: gutter_space($columns)
   width: column_width($x, $columns)
 
 @mixin column-offset-left-pull($x, $offset:0, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: offset_width($offset) - gutter_space($columns)
   margin-right: gutter_space($columns)
   @if $resize == true
@@ -52,7 +59,7 @@
     width: column_width($x, $columns)
 
 @mixin column-offset-left-push($x, $offset:0, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: offset_width($offset)
   margin-right: 0
   @if $resize == true
@@ -61,19 +68,19 @@
     width: column_width($x, $columns)
 
 @mixin column-offset-left-full($x, $offset:0, $columns:$columns)
-  float: left
+  +base-column
   margin-left: offset_width($offset) - gutter_space($columns)
   margin-right: 0
   width: column_full_width($x, $columns)
 
 @mixin column-offset-right($x, $offset:0, $columns:$columns)
-  float: left
+  +base-column
   margin-left: gutter_space($columns)
   margin-right: offset_width($offset)
   width: column_width($x, $columns)
 
 @mixin column-offset-right-pull($x, $offset:0, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: 0
   margin-right: offset_width($offset) - gutter_space($columns)
   @if $resize == true
@@ -82,7 +89,7 @@
     width: column_width($x, $columns)
 
 @mixin column-offset-right-push($x, $offset:0, $columns:$columns, $resize:true)
-  float: left
+  +base-column
   margin-left: gutter_space($columns)
   margin-right: offset_width($offset) - gutter_space($columns)
   @if $resize == true
@@ -91,7 +98,7 @@
     width: column_width($x, $columns)
 
 @mixin column-offset-right-full($x, $offset:0, $columns:$columns)
-  float: left
+  +base-column
   margin-left: 0
   margin-right: offset_width($offset) - gutter_space($columns)
   width: column_full_width($x, $columns)
