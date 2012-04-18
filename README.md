@@ -7,6 +7,8 @@ Fishnet follows the philosophy that your html markup should be as semantic as po
 
 Fishnet builds upon [semantic.gs][sgs] by providing additional column type mixins and exposing functions in order to cover every pixel available on the screen. The core components of fishnet will not insert any classes or other elements into your style sheets (unless you tell it to). It's all based on variables, functions, and mixins. This allows an application to use grid elements when needed and get out of the way when they're not.
 
+**Version: 1.0.1**
+
 ### &raquo; [View the documentation and demo][dox]
 
 ## Installation
