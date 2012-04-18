@@ -7,13 +7,23 @@
 
   %p A simple grid framework based on the <a href="http://semantic.gs/">semantic grid system</a>, built in <a href="http://sass-lang.com/">sass</a> and tuned to work with both fluid and fixed layouts.
   %br
-  %p Fishnet follows the philosophy that your html markup should be as semantic as possible, while maintaining the flexibility and order of a grid system. With <a href="http://sass-lang.com/">sass</a> (and other preprocessors), it's trivial to inject a grid system directly into an element styles. Fishnet provides a common interface for maintaining the structure and consistency provided by a grid, while maintaining logical sematic elements within the markup.
+  %p Fishnet follows the philosophy that your html markup should be as semantic as possible, while maintaining the flexibility and order of a grid system. With <a href="http://sass-lang.com/">sass</a> (and other preprocessors), it's trivial to inject a grid system directly into an element styles. Fishnet provides a common interface for maintaining the structure and consistency provided by a grid, while maintaining logical semantic elements within the markup.
   %br
   %p Fishnet builds upon <a href="http://semantic.gs/">semantic.gs</a> by providing additional column type mixins and exposing functions in order to cover every pixel available on the screen. The core components of fishnet will not insert any classes or other elements into your stylesheets (<em><a href="#helpers">unless you tell it to</a></em>). It's all based on variables, functions, and mixins. This allows an application to use grid elements when needed and get out of the way when they're not.
 
 .section
   %h2.section-heading Install
-  %p(style="color:#ff00ff;") <em>Needs to be completed</em>
+  %p In your Gemfile:
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        gem 'fishnet'
+  %br
+  %p In your <code>application.sass</code> file:
+  %pre.prettyprint
+    = preserve do
+      :escaped
+        @import fishnet
 
 .section
   %h2.section-heading Variables, Functions, Mixins
