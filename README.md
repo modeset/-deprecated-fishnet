@@ -20,8 +20,20 @@ In your Gemfile:
 In your `application.sass` file:
 
     @import fishnet
+
+    // Optionally include the mesh layout
+    @import fishnet/mesh
     
 See the [demo][dox] for usage
+
+## Fishnet Source Files
+
+All of the [source files](https://github.com/modeset/fishnet/tree/master/app/assets/stylesheets/fishnet) for fishnet are found in `app/assets/stylesheets/fishnet/`
+
+- [Settings](https://github.com/modeset/fishnet/blob/master/app/assets/stylesheets/fishnet/_settings.sass)
+- [Functions](https://github.com/modeset/fishnet/blob/master/app/assets/stylesheets/fishnet/_functions.sass)
+- [Mixins](https://github.com/modeset/fishnet/blob/master/app/assets/stylesheets/fishnet/_mixins.sass)
+- [Mesh](https://github.com/modeset/fishnet/blob/master/app/assets/stylesheets/fishnet/_mesh.sass)
 
 
 ## Resources
