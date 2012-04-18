@@ -1,6 +1,6 @@
 
 /* VENDOR ASSETS */
-//= require jquery-1.7.1.min
+//= require jquery
 
 (function() {
   var dimensions = $('#page_dimensions')
