@@ -4,9 +4,9 @@ require File.expand_path('../lib/fishnet/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Matthew Kitt"]
   gem.email         = ["mk.kitt@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{A simple grid framework based on the semantic grid system, built in sass and tuned to work with both fluid and fixed layouts.}
+  gem.summary       = %q{A simple grid framework based on the semantic grid system, built in sass and tuned to work with both fluid and fixed layouts.}
+  gem.homepage      = "http://fishnet.modeset.com/"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
