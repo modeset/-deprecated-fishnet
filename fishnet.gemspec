@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rails', '>= 3.1.0'
   gem.add_runtime_dependency 'sass-rails'
 
-  gem.add_development_dependency 'haml-rails'
-  gem.add_development_dependency 'jquery-rails'
+  # gem.add_development_dependency 'haml-rails'
+  # gem.add_development_dependency 'jquery-rails'
 
 end
