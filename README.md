@@ -43,7 +43,7 @@ All of the [source files](https://github.com/modeset/fishnet/tree/master/app/ass
 - [Underoos](https://github.com/modeset/underoos)
 
 ## License
-Fishnet is Copyright &copy; 2012 [Mode Set][ms]. It is free software, and may be redistributed under the terms specified in the (MIT) [LICENSE](https://raw.github.com/modeset/fishnet/master/LICENSE) file.
+Fishnet is Copyright &copy; 2013 [Mode Set][ms]. It is free software, and may be redistributed under the terms specified in the (MIT) [LICENSE](https://raw.github.com/modeset/fishnet/master/LICENSE) file.
 
 
 [sass]: http://sass-lang.com/
